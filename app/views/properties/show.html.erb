@@ -1,0 +1,50 @@
+<div class="container">
+  <p>
+    <span class="bold">Property Name:</span>
+    <%= @property.property_name %>
+  </p>
+  <p>
+    <span class="bold">Rent:</span>
+    <%= "#{@property.rent.to_s(:delimited)}円" %>
+  </p>
+  <p>
+    <span class="bold">address:</span>
+    <%= @property.address %>
+  </p>
+  <p>
+    <span class="bold">Age</span>
+    <%= "#{@property.age}年" %>
+  </p>
+  <p>
+    <span class="bold">remarks</span>
+    <%= @property.note %>
+  </p>
+</div>
+
+<% if @nearest_stations.present? %>
+  <hr>
+
+  <% @nearest_stations.each_with_index do |nearest_station, i| %>
+    <h4>
+    Nearest station
+      <%= i + 1 %>
+    </h4>
+
+    <div class="container">
+      <p>
+        <span class="bold">Route name</span>
+        <%= nearest_station.route_name %>
+      </p>
+      <p>
+        <span class="bold">Station name</span>
+        <%= nearest_station.station_name %>
+      </p>
+      <p>
+        <span class="bold">Minutes on foot</span>
+        <%= "#{nearest_station.time}分" %>
+      </p>
+    </div>
+  <% end %>
+<% end %>
+<%= link_to 'edit', edit_property_path(@property.id) %>|
+<%= link_to 'return', properties_path %>
